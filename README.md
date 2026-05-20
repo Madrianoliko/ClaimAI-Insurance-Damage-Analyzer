@@ -37,7 +37,16 @@ SSE stream → frontend assembles JSON live → report renders
 
 ## Demo
 
+**Incident description:**
+> Head-on collision between two vehicles. Red Suzuki Celerio lost control and struck a roadside tree at approximately 60 km/h. Second vehicle — silver Audi A3 — sustained severe front-end impact. Both airbags deployed. Red vehicle is non-drivable with crumple zone fully engaged. Silver vehicle front axle appears misaligned. Scene secured by police. No fatalities reported.
 
+**Generated report — SEVERE · $10,000–18,000:**
+
+![ClaimAI report](ClaimAi-UseCase-img.png)
+
+📹 [Watch full use case recording](ClaimAI-UseCase-rec.mov)
+
+---
 
 ## Features
 
@@ -68,8 +77,8 @@ SSE stream → frontend assembles JSON live → report renders
 **Prerequisites:** Node.js 18+, OpenAI API key with billing, Roboflow API key + model ID
 
 ```bash
-git clone https://github.com/yourusername/claimai.git
-cd claimai
+git clone https://github.com/Madrianoliko/ClaimAI-Insurance-Damage-Analyzer.git
+cd ClaimAI-Insurance-Damage-Analyzer
 
 # Install
 cd backend && npm install

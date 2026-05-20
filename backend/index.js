@@ -13,11 +13,17 @@ const PORT = process.env.PORT || 3001;
 
 // --- Middleware ---
 
-// CORS — zezwalamy frontendowi (Vite dev server na :5173) na dostęp do API
-// Na Railway w produkcji FRONTEND_URL powinno być ustawione w env vars
+// CORS — lista dozwolonych originów
+// W dev: localhost:5173 (Vite)
+// Na Railway: ustaw FRONTEND_URL w env vars backendu
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.FRONTEND_URL,
+].filter(Boolean); // filter(Boolean) usuwa undefined jeśli FRONTEND_URL nie ustawione
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
   })
 );

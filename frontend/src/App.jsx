@@ -8,6 +8,11 @@ import { useState } from "react";
 import ClaimInput from "./components/ClaimInput.jsx";
 import DamageReport from "./components/DamageReport.jsx";
 
+// W dev: Vite proxy przekierowuje /api → localhost:3001 (vite.config.js)
+// Na produkcji (Railway): VITE_API_URL wskazuje na URL backendu, np. https://claimai-backend.up.railway.app
+// import.meta.env to odpowiednik IConfiguration w C# — zmienne środowiskowe Vite wstrzykuje w build time
+const API_BASE = import.meta.env.VITE_API_URL || "";
+
 // Stan aplikacji — co może się dziać
 const STATUS = {
   IDLE: "idle",           // Nic się nie dzieje, formularz gotowy
@@ -46,7 +51,7 @@ export default function App() {
 
       // Fetch z POST — nie ustawiamy Content-Type ręcznie!
       // Przeglądarka sama ustawi "multipart/form-data; boundary=..." gdy wykryje FormData
-      const response = await fetch("/api/analyze", {
+      const response = await fetch(`${API_BASE}/api/analyze`, {
         method: "POST",
         body: formData,
       });
