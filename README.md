@@ -37,16 +37,7 @@ SSE stream → frontend assembles JSON live → report renders
 
 ## Demo
 
-**Incident description:**
-> Head-on collision between two vehicles. Red Suzuki Celerio lost control and struck a roadside tree at approximately 60 km/h. Second vehicle — silver Audi A3 — sustained severe front-end impact. Both airbags deployed. Red vehicle is non-drivable with crumple zone fully engaged. Silver vehicle front axle appears misaligned. Scene secured by police. No fatalities reported.
-
-**Generated report — SEVERE · $10,000–18,000:**
-
-![ClaimAI report](ClaimAi-UseCase-img.png)
-
-📹 [Watch full use case recording](ClaimAI-UseCase-rec.mov)
-
----
+Try it yourself on the website: https://claimai-insurance-damage-analyzer-production.up.railway.app
 
 ## Features
 
