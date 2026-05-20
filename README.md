@@ -2,6 +2,11 @@
 
 > Describe the accident. Upload the photos. Get a structured damage report in seconds.
 
+
+## Demo
+
+Try it yourself on the website: https://claimai-insurance-damage-analyzer-production.up.railway.app
+
 ClaimAI automates vehicle damage assessment for insurance adjusters. Instead of manually reviewing photos, writing up damage descriptions and estimating repair costs — which takes 45–90 minutes per claim — ClaimAI does it in under 10 seconds using a YOLO + GPT-4o pipeline.
 
 ![ClaimAI screenshot](ClaimAi-UseCase-img.png)
@@ -34,10 +39,6 @@ SSE stream → frontend assembles JSON live → report renders
 ```
 
 ---
-
-## Demo
-
-Try it yourself on the website: https://claimai-insurance-damage-analyzer-production.up.railway.app
 
 ## Features
 
