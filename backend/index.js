@@ -6,24 +6,24 @@
 import "dotenv/config"; // Ładuje .env do process.env — musi być PIERWSZE
 import express from "express";
 import cors from "cors";
-import path from "path";
-import { fileURLToPath } from "url";
 import analyzeRouter from "./routes/analyze.js";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// __dirname nie istnieje w ES modules — trzeba je odtworzyć
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 // --- Middleware ---
 
-// CORS — tylko w dev (localhost:5173)
-// Na produkcji frontend serwowany jest przez ten sam serwer → CORS niepotrzebny
+// CORS — lista dozwolonych originów
+// W dev: localhost:5173 (Vite)
+// Na Railway: FRONTEND_URL wskazuje na URL frontendu (np. https://claimai-frontend.up.railway.app)
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.FRONTEND_URL,
+].filter(Boolean); // filter(Boolean) usuwa undefined jeśli FRONTEND_URL nie ustawione
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
   })
 );
@@ -40,18 +40,6 @@ app.use("/api/analyze", analyzeRouter);
 // Użyteczne na Railway i w CI/CD
 app.get("/health", (req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
-});
-
-// --- Serwowanie frontendu (produkcja) ---
-// Na Railway: Express serwuje zbudowany React z frontend/dist
-// W dev: Vite działa osobno na :5173 (ten blok nie jest aktywny)
-const frontendDist = path.join(__dirname, "../frontend/dist");
-app.use(express.static(frontendDist));
-
-// Catch-all: React Router obsługuje routing po stronie klienta
-// Każde nieznane GET / zwraca index.html zamiast "Cannot GET /"
-app.get("*", (req, res) => {
-  res.sendFile(path.join(frontendDist, "index.html"));
 });
 
 // --- Start ---
